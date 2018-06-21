@@ -16,17 +16,9 @@ if [ ! -f "${KEYSDIR}/${KEYNAME}.priv" ] ; then
     mv ${KEYSDIR}/root.pub ${KEYSDIR}/${KEYNAME}.pub
 fi
 
-if [ ! -f "${KEYSDIR}/client.pfx" ] ; then
-    openssl genrsa -out ${KEYSDIR}/client.key 2048
-    openssl req -key ${KEYSDIR}/client.key -new -out ${KEYSDIR}/client.req -subj "/C=AU/ST=ACT/L=Canberra/O=GoSource/OU=SawtoothValidator/CN=*"
-    openssl x509 -req -days 730 -in ${KEYSDIR}/client.req -signkey ${KEYSDIR}/client.key -out ${KEYSDIR}/client.crt -extfile /opt/sawtooth/key/client.cnf -extensions ssl_client
-    openssl pkcs12 -export -out ${KEYSDIR}/client.pfx -inkey ${KEYSDIR}/client.key -in ${KEYSDIR}/client.crt -passout pass:
-fi
-
 rm -f /opt/sawtooth/key/validator.pub
 rm -f /opt/sawtooth/key/client.pem
 cp ${KEYSDIR}/${KEYNAME}.pub /opt/sawtooth/key/validator.pub
-#cp ${KEYSDIR}/client.crt /opt/sawtooth/key/client.pem - Temp fix for borken cert AN 20180515
 cp /opt/sawtooth/key/pubkey.pem /opt/sawtooth/key/client.pem
 
 OPENTSDB_SETTINGS=""
