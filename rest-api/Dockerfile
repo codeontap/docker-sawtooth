@@ -1,4 +1,4 @@
-FROM aaronnicoli/sawtooth-base:latest
+FROM codeontap/sawtooth-base:latest
 
 
 RUN apt-get update && \
@@ -8,9 +8,8 @@ RUN apt-get update && \
     apt-get update && \
     apt-get install -y telegraf
 
-ADD rest-api/start.sh /opt/sawtooth/start.sh
-ADD rest-api/rest_api.toml /etc/sawtooth/rest_api.toml
-ADD src_global/telegraf.conf /etc/telegraf/telegraf.conf
+ADD ./start.sh /opt/sawtooth/start.sh
+ADD ./rest_api.toml /etc/sawtooth/rest_api.toml
 
 RUN chmod 755 /opt/sawtooth/start.sh
 

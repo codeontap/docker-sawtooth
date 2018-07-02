@@ -1,4 +1,4 @@
-FROM aaronnicoli/sawtooth-base:latest
+FROM codeontap/sawtooth-base:latest
 
 RUN mkdir -p /opt/sawtooth/key && \
     apt-get update && \
@@ -8,12 +8,11 @@ RUN mkdir -p /opt/sawtooth/key && \
     apt-get update && \
     apt-get install -y telegraf
 
-ADD validator/start.sh /opt/sawtooth/start.sh
-ADD validator/poet-settings.sh /opt/sawtooth/poet-settings.sh
-ADD validator/validator.toml /etc/sawtooth/validator.toml
-ADD src_global/telegraf.conf /etc/telegraf/telegraf.conf
-ADD validator/client.cnf /opt/sawtooth/key/client.cnf
-ADD validator/pubkey.pem /opt/sawtooth/key/pubkey.pem
+ADD ./start.sh /opt/sawtooth/start.sh
+ADD ./poet-settings.sh /opt/sawtooth/poet-settings.sh
+ADD ./validator.toml /etc/sawtooth/validator.toml
+ADD ./client.cnf /opt/sawtooth/key/client.cnf
+ADD ./pubkey.pem /opt/sawtooth/key/pubkey.pem
 
 RUN chmod 755 /opt/sawtooth/start.sh && chmod 755 /opt/sawtooth/poet-settings.sh
 

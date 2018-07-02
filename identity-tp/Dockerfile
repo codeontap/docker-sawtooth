@@ -1,4 +1,4 @@
-FROM aaronnicoli/sawtooth-base:latest
+FROM codeontap/sawtooth-base:latest
 
 RUN apt-get update && apt-get install -y python3-sawtooth-identity && apt-get clean
 

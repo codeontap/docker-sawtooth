@@ -1,3 +1,3 @@
-FROM aaronnicoli/sawtooth-base:latest
+FROM codeontap/sawtooth-base:latest
 
 CMD [ "sh", "-c", "poet-validator-registry-tp -v -C tcp://${VALIDATOR_ADDRESS_W_PORT}" ]
