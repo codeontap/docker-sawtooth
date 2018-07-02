@@ -6,7 +6,7 @@ RUN apt-get update && \
     curl -sL https://repos.influxdata.com/influxdb.key | apt-key add - && \
     apt-add-repository "deb https://repos.influxdata.com/ubuntu xenial stable" && \
     apt-get update && \
-    apt-get install -y telegraf
+    apt-get install -o Dpkg::Options::="--force-confold" -y telegraf 
 
 ADD ./start.sh /opt/sawtooth/start.sh
 ADD ./rest_api.toml /etc/sawtooth/rest_api.toml
